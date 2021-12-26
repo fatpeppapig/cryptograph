@@ -4,16 +4,16 @@ import { getCoinChartData } from './api';
 import { generateCoinChart } from './chart';
 
 export const generateImage = async (
-    width = 640,
     coins: string,
+    width = 640,
+    height: number,
 ): Promise<Buffer> => {
-    const height = Math.floor((width * 3) / 4);
+    if (!height) {
+        height = Math.floor((width * 3) / 4);
+    }
 
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, width, height);
 
     const coinChartData = await Promise.all(
         coins.split(',').map(async (id) => await getCoinChartData(id.trim())),

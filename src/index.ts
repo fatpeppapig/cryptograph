@@ -10,8 +10,9 @@ const app = express();
 
 app.get('/', async (req, res) => {
     const image = await generateImage(
-        parseInt(req.query.width as string) || undefined,
         (req.query.coins as string) || process.env.COINS,
+        parseInt(req.query.width as string) || undefined,
+        parseInt(req.query.height as string) || undefined,
     );
 
     res.writeHead(200, {
