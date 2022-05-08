@@ -1,6 +1,8 @@
 import { Canvas, createCanvas, loadImage } from 'canvas';
 
-import { getMargin, plot } from './utils';
+import { plot } from './utils';
+
+// Generate coin chart canvas
 
 export const generateCoinChart = async (
     width: number,
@@ -12,9 +14,10 @@ export const generateCoinChart = async (
 
     const icon = await loadImage(coinChartData.image.large);
 
-    const margin = getMargin(width);
+    const margin = width / 32;
 
     const prices = coinChartData.prices.map((price: number[]) => price[1]);
+
     const pricesSorted = [...prices].sort();
 
     const minPrice = pricesSorted[0];

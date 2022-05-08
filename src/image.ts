@@ -3,15 +3,13 @@ import { createCanvas } from 'canvas';
 import { getCoinChartData } from './api';
 import { generateCoinChart } from './chart';
 
+// Generate image data that contains charts for each specified coin
+
 export const generateImage = async (
     coins: string,
     width = 640,
-    height: number,
+    height = Math.floor((width * 3) / 4),
 ): Promise<Buffer> => {
-    if (!height) {
-        height = Math.floor((width * 3) / 4);
-    }
-
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
 
